@@ -1,0 +1,103 @@
+*{
+  margin: 0;
+  padding: 0;
+  color: #EAEAEA;
+}
+
+@font-face {
+  font-family: 'DMC5';
+  src: url('/fonts/DMC5Font.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'futhark';
+  src: url('/fonts/RUNE.TTF') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+/* Apply fixed background image */
+body {
+  background-image: url('/assets/background.jpg'); /* Replace with your image path */
+  background-size: cover; /* Ensures the image covers the entire page */
+  background-repeat: no-repeat; /* Prevents tiling */
+  background-attachment: fixed; /* Makes the background fixed during scrolling */
+  background-position: center; /* Centers the image */
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.content-box {
+  width: 80%;
+  margin: 50px auto;
+  background-color: rgba(28, 28, 31, 0.8); /* Semi-transparent background */
+  border-radius: 15px; /* Rounded corners */
+  padding: 20px;
+  box-shadow: 0 4px 15px #FFD700; /* Shadow for a 3D effect */
+  color: #EAEAEA;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.content-box h1{
+  font-family: futhark;
+  font-size: 55px ;
+  color:black;
+  text-shadow: 0 4px 4px #FFD700;   
+}
+
+.content-box h2 {
+  font-family: DMC5;   
+  font-size: 30px;
+}
+.content-box h3 {
+  font-family: DMC5;  
+  font-size: 30px;
+}
+
+.images img {
+  width: 20%;
+  margin: 20px;
+  filter: grayscale(100%); /* Makes the image black and white */
+  transition: filter 0.3s ease-in-out; /* Smooth transition for hover effect */
+  cursor: pointer;
+}
+
+.images img:hover {
+  filter: grayscale(0%); /* Restores the original color on hover */
+  cursor: pointer;
+}
+
+.quote-img {
+  width: 60%;
+  cursor: pointer;
+}
+
+.quote {
+  display: flex;
+  margin-left: 25%;
+  margin-right: 25%;
+  font-family: DMC5;
+}
+
+.quote h6 {
+  font-family: DMC5;
+  font-size: 50px;
+  color: #FFD700;
+  text-align: center;
+}
+
+.space {
+  margin: 20px;
+}
+
+.fading-line {
+  height: 2px; /* Thickness of the line */
+  background: linear-gradient(to right, transparent, #FFD700, transparent); /* Fades at edges */
+  margin: 20px auto; /* Centers the line with some spacing */
+  width: 80%; /* Adjusts the line width */
+}
+
