@@ -1,5 +1,5 @@
-# characters/seed.py
-from shadowslave.models import Character
+# shadowslave/seed.py
+from shadowslave.models import Characters
 
 def seed_characters():
     characters = [
@@ -83,7 +83,7 @@ def seed_characters():
     ]
 
     for char in characters:
-        Character.objects.create(**char)
+        Characters.objects.create(**char)
 
 if __name__ == '__main__':
     seed_characters()

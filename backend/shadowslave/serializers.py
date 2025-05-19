@@ -1,8 +1,8 @@
 # characters/serializers.py
 from rest_framework import serializers
-from .models import Character
+from .models import Characters
 
-class CharacterSerializer(serializers.ModelSerializer):
+class CharactersSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Character
+        model = Characters
         fields = ['id', 'name', 'true_name', 'age', 'vital_status', 'rank', 'class_name', 'aspect', 'flaw', 'image']
