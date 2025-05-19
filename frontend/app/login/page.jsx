@@ -36,7 +36,7 @@ export default function Login() {
         localStorage.setItem("refresh_token", data.refresh);
         alert("Login successful!");
         // Redirect user to dashboard or home page
-        window.location.href = "/dashboard"; // Replace with actual route
+        window.location.href = "/profile"; // Replace with actual route
       } else {
         // Handle error (wrong credentials, etc.)
         alert(data.detail || "Login failed");
