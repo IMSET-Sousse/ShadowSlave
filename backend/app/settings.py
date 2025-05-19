@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'corsheaders',
     'shadowslave',
+    'rest_framework_simplejwt',
 ]
 
 MIDDLEWARE = [
@@ -63,6 +64,12 @@ REST_FRAMEWORK = {
         'rest_framework.permissions.AllowAny',  # Public API for now
     ],
 }
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
+    ],
+}
+
 
 ROOT_URLCONF = 'app.urls'
 
