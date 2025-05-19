@@ -1,7 +1,7 @@
 from django.db import models
 
 # Create your models here.
-class Character(models.Model):
+class Characters(models.Model):
     name = models.CharField(max_length=100)
     true_name = models.CharField(max_length=100, blank=True)
     age = models.CharField(max_length=50)  # e.g., "26(current)"

@@ -1,7 +1,7 @@
 # characters/urls.py
 from django.urls import path
-from .views import CharacterList
+from .views import CharactersList
 
 urlpatterns = [
-    path('', CharacterList.as_view(), name='character-list'),
+    path('', CharactersList.as_view(), name='character-list'),
 ]
