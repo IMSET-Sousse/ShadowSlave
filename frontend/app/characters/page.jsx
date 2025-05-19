@@ -1,28 +1,35 @@
+"use client";
+
+import { useEffect, useState } from "react";
 import "../../styles/characters.css";
 
-async function getCharacters() {
-  try {
-    const res = await fetch("http://0.0.0.0:8000/api/shadowslave/", {
-      next: { revalidate: 60 },
-    });
-    if (!res.ok) {
-      throw new Error("Failed to fetch characters");
-    }
-    return res.json();
-  } catch (error) {
-    console.error(error);
-    return [];
-  }
-}
+export default function Characters() {
+  const [characters, setCharacters] = useState([]);
+  const [error, setError] = useState(false);
 
-export default async function Characters() {
-  const characters = await getCharacters();
+  useEffect(() => {
+    async function fetchCharacters() {
+      try {
+        const res = await fetch("http://localhost:8000/api/shadowslave/");
+        if (!res.ok) throw new Error("Failed to fetch characters");
+        const data = await res.json();
+        setCharacters(data);
+      } catch (err) {
+        console.error(err);
+        setError(true);
+      }
+    }
+
+    fetchCharacters();
+  }, []);
 
   return (
     <div className="content-box">
       <h3>Characters</h3>
       <div className="space"></div>
-      {characters.length === 0 ? (
+      {error ? (
+        <p>Error loading characters.</p>
+      ) : characters.length === 0 ? (
         <p>No characters found.</p>
       ) : (
         <div className="ch-images">
