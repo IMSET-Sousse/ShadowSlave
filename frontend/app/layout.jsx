@@ -1,6 +1,7 @@
 // app/layout.jsx
-import "../styles/globals.css"; // Global styles (includes body, fonts, etc.)
+import "../styles/globals.css";
 import Navbar from "../components/Navbar";
+import ShadowSlaveChatbot from "../components/chat"; // Make sure this path is correct
 
 export default function RootLayout({ children }) {
   return (
@@ -8,6 +9,7 @@ export default function RootLayout({ children }) {
       <body>
         <Navbar />
         {children}
+        <ShadowSlaveChatbot />
       </body>
     </html>
   );
