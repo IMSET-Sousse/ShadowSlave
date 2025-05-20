@@ -31,12 +31,13 @@ export default function Login() {
       const data = await response.json();
 
       if (response.ok) {
-        // Successfully logged in, save JWT token
+        // Successfully logged in, save JWT token and username
         localStorage.setItem("access_token", data.access);
         localStorage.setItem("refresh_token", data.refresh);
+        localStorage.setItem("username", formData.username);
         alert("Login successful!");
         // Redirect user to dashboard or home page
-        window.location.href = "/profile"; // Replace with actual route
+        window.location.href = "/"; // Replace with actual route
       } else {
         // Handle error (wrong credentials, etc.)
         alert(data.detail || "Login failed");

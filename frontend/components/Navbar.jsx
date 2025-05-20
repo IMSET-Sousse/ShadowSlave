@@ -9,14 +9,25 @@ export default function Navbar() {
   const [username, setUsername] = useState(null);
 
   useEffect(() => {
-    // Check for token and username in localStorage
-    const token = typeof window !== 'undefined' ? localStorage.getItem("access_token") : null;
-    const storedUsername = typeof window !== 'undefined' ? localStorage.getItem("username") : null;
-    if (token && storedUsername) {
-      setUsername(storedUsername);
-    } else {
-      setUsername(null);
-    }
+    // Function to check auth status
+    const checkAuth = () => {
+      const token = localStorage.getItem("access_token");
+      const storedUsername = localStorage.getItem("username");
+      if (token && storedUsername) {
+        setUsername(storedUsername);
+      } else {
+        setUsername(null);
+      }
+    };
+
+    // Check on mount
+    checkAuth();
+
+    // Add event listener for storage changes
+    window.addEventListener('storage', checkAuth);
+
+    // Cleanup
+    return () => window.removeEventListener('storage', checkAuth);
   }, []);
 
   const handleLogout = () => {
@@ -60,8 +71,16 @@ export default function Navbar() {
         <ul>
           {username ? (
             <>
-              <li><span style={{color: '#FFD700', fontWeight: 'bold'}}>{username}</span></li>
-              <li><button onClick={handleLogout} style={{background: 'none', border: 'none', color: '#FFD700', cursor: 'pointer'}}>Logout</button></li>
+              <li>
+                <Link href="/profile">
+                  {username}
+                </Link>
+              </li>
+              <li>
+                <Link href="#" onClick={handleLogout}>
+                  Logout
+                </Link>
+              </li>
             </>
           ) : (
             <>
