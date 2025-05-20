@@ -1,5 +1,6 @@
 @startuml
 actor User as U
+actor "Chatbot" as AI
 
 rectangle Website {
     usecase "View Home Page" as UC1
@@ -9,6 +10,14 @@ rectangle Website {
     usecase "View Author Page" as UC5
     usecase "Hover over Images to zoom" as UC6
     usecase "Hover over images to see description" as UC7
+    usecase "Fetch Character Data" as UC8
+    usecase "Generate AI Responses" as UC9
+}
+
+rectangle "Backend" {
+    usecase "Process API Requests" as UC10
+    usecase "Manage Database" as UC11
+    usecase "Handle AI Integration" as UC12
 }
 
 U --> UC1
@@ -18,5 +27,10 @@ U --> UC4
 U --> UC5
 UC4 --> UC6
 UC3 --> UC7
-
+UC3 --> UC8
+UC8 --> UC10
+UC10 --> UC11
+UC10 --> UC12
+UC12 --> UC9
+AI --> UC9
 @enduml

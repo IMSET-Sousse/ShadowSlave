@@ -1,4 +1,22 @@
 @startuml
+package "Backend" {
+    package "Django" {
+        package "Django REST Framework" {
+            class APIView
+            class Serializer
+        }
+        package "Django Models" {
+            class Characters
+            class Plot
+        }
+    }
+    
+    package "Ollama" {
+        class OllamaClient
+        class ModelManager
+    }
+}
+
 package "Website" {
     package "Navbar" {
         class Navbar {
@@ -13,10 +31,12 @@ package "Website" {
         }
         class PlotPage {
             +renderPlot()
+            +fetchPlotData()
         }
         class CharactersPage {
             +renderCharacters()
             +hoverCardEffect()
+            +fetchCharacterData()
         }
         class GalleryPage {
             +renderGallery()
@@ -40,16 +60,33 @@ package "Website" {
             +fadeEffect()
         }
     }
-
-    Navbar --> HomePage : "Navigates to"
-    Navbar --> PlotPage : "Navigates to"
-    Navbar --> CharactersPage : "Navigates to"
-    Navbar --> GalleryPage : "Navigates to"
-    Navbar --> AuthorPage : "Navigates to"
-
-    GalleryPage --> Images : "Uses"
-    Images --> Fonts : "Styled with"
-    CharactersPage --> HoverCard : "Displays details on hover"
-    HoverCard --> Fonts : "Styled with"
 }
+
+package "API" {
+    class CharacterAPI {
+        +getCharacters()
+        +getCharacterDetails()
+    }
+    class PlotAPI {
+        +getPlotData()
+    }
+}
+
+Navbar --> HomePage : "Navigates to"
+Navbar --> PlotPage : "Navigates to"
+Navbar --> CharactersPage : "Navigates to"
+Navbar --> GalleryPage : "Navigates to"
+Navbar --> AuthorPage : "Navigates to"
+
+GalleryPage --> Images : "Uses"
+Images --> Fonts : "Styled with"
+CharactersPage --> HoverCard : "Displays details on hover"
+HoverCard --> Fonts : "Styled with"
+
+CharactersPage --> CharacterAPI : "Fetches data from"
+PlotPage --> PlotAPI : "Fetches data from"
+
+CharacterAPI --> Django : "Uses"
+PlotAPI --> Django : "Uses"
+Django --> Ollama : "Uses for AI features"
 @enduml
