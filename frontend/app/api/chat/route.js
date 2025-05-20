@@ -1,27 +1,33 @@
-import OpenAI from 'openai';
-
-const openai = new OpenAI({
-  apiKey: process.env.OPENAI_API_KEY,
-});
-
 export async function POST(req) {
   try {
     const { userMessage } = await req.json();
     
-    const completion = await openai.chat.completions.create({
-      model: "gpt-3.5-turbo",
-      messages: [
-        {
-          role: "system",
-          content: "You are an expert on Shadow Slave. Only answer questions about the novel."
-        },
-        { role: "user", content: userMessage }
-      ],
+    const response = await fetch('http://127.0.0.1:11434/api/chat', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        model: "mistral", // You can change this to any model you've pulled
+        messages: [
+          {
+            role: "system",
+            content: "You are an expert on the web novel 'Shadow Slave' by GuiltyThree. Only answer questions about this specific novel and its universe. If the question is not about this book, politely say you can only answer questions about 'Shadow Slave' by GuiltyThree."
+          },
+          { role: "user", content: userMessage }
+        ],
+        stream: false
+      }),
     });
 
-    return Response.json(completion.choices[0].message);
+    if (!response.ok) {
+      throw new Error('Failed to get response from Ollama');
+    }
+
+    const data = await response.json();
+    return Response.json({ content: data.message.content });
   } catch (error) {
-    console.error("OpenAI Error:", error);
+    console.error("Ollama Error:", error);
     return Response.json(
       { error: error.message },
       { status: 500 }
