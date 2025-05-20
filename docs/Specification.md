@@ -4,7 +4,7 @@
 - Raed Bouguerra - raedbgr
 - Fedy Meherzi - Fedy47
 - Fares ben afia - FeresBenAfia
-- Moetaz - Moetaz
+- Moetaz - moteaz
 
 ## 1.Project Overview:
 - Name: Shadow Slave Web App
