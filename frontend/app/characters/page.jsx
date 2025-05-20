@@ -10,7 +10,7 @@ export default function Characters() {
   useEffect(() => {
     async function fetchCharacters() {
       try {
-        const res = await fetch("http://localhost:8000/api/shadowslave/");
+        const res = await fetch("http://localhost:8000/api/shadowslave/characters/");
         if (!res.ok) throw new Error("Failed to fetch characters");
         const data = await res.json();
         setCharacters(data);
